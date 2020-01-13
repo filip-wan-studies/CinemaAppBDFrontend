@@ -1,12 +1,6 @@
 import { combineReducers } from 'redux';
+import filmsReducer from './filmsReducer';
 
 export default combineReducers({
-    films: (state = [], action) => {
-        switch (action.type) {
-            case 'FETCH_FILMS':
-                return action.payload;
-            default:
-                return state;
-        }
-    }
+    films: filmsReducer
 });

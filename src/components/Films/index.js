@@ -15,7 +15,6 @@ class Films extends React.Component {
 
     renderList() {
         if (!this.props.films) return <div />;
-        console.log(this.props.films);
         return this.props.films.map(f => {
             if (f.screenings.length > 0) return <Film key={f.idFilm} film={f} />;
         });

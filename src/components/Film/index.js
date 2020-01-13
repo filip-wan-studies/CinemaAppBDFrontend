@@ -10,7 +10,6 @@ class Film extends React.Component {
     }
 
     render() {
-        console.log(this.props.film);
         if (_.isEmpty(this.props.film))
             return (
                 <div className="d-flex flex-column align-items-center position-relative mt-5">

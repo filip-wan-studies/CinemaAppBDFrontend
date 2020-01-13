@@ -1,18 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchFilms } from '../../actions';
+import Film from './Film';
 
 class Films extends React.Component {
     componentDidMount() {
         this.props.fetchFilms(this.props.cinema);
     }
     render() {
-        return <div className="d-flex flex-column align-items-center position-relative pb-5">{this.renderList()}</div>;
+        return (
+            <div className="d-flex flex-column align-items-center position-relative pb-5 row">{this.renderList()}</div>
+        );
     }
 
     renderList() {
         if (!this.props.films) return <div />;
-        return this.props.films.map(f => this.renderFilm(f));
+        console.log(this.props.films);
+        return this.props.films.map(f => {
+            if (f.screenings.length > 0) return <Film key={f.idFilm} film={f} />;
+        });
     }
 
     renderFilm = film => {

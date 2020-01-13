@@ -7,6 +7,7 @@ export const fetchFilms = () => async dispatch => {
 };
 
 export const fetchFilm = id => async dispatch => {
+    dispatch({ type: 'FETCH_FILM', payload: {} });
     let response = await omdb.get('', { params: { t: id, plot: 'full' } });
 
     if (response.data.Response === 'True') {

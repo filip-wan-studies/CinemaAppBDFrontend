@@ -1,15 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import Navbar from './Navbar';
+import Routes from './Routes';
+import { HashRouter } from 'react-router-dom';
 
 function App() {
     return (
-        <div className="App">
-            <header className="App-header">
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-            </header>
-        </div>
+        <HashRouter>
+            <Navbar />
+            <Routes />
+        </HashRouter>
     );
 }
 

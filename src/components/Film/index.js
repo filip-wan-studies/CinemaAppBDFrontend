@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchFilm } from '../../actions';
 import FilmInfo from './FilmInfo';
+import Screenings from './Screenings';
 
 class Film extends React.Component {
     componentDidMount() {
@@ -22,8 +23,12 @@ class Film extends React.Component {
                     </div>
                 </div>
             );
-
-        return <FilmInfo />;
+        return (
+            <div className="media row my-5 justify-content-center">
+                <FilmInfo />
+                <Screenings />
+            </div>
+        );
     }
 }
 

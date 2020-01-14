@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import omdb from '../apis/omdb';
 import cinemaBack from '../apis/cinemaBack';
 
@@ -8,17 +9,36 @@ export const fetchFilms = () => async dispatch => {
 
 export const fetchFilm = id => async dispatch => {
     dispatch({ type: 'FETCH_FILM', payload: {} });
-    let response = await omdb.get('', { params: { t: id, plot: 'full' } });
 
-    if (response.data.Response === 'True') {
-        dispatch({ type: 'FETCH_FILM', payload: response.data });
+    let responseCinemaBack = await cinemaBack.get('film/' + id);
+
+    if (_.isEmpty(responseCinemaBack.data)) return;
+
+    let responseOmdb = await omdb.get('', { params: { t: responseCinemaBack.data.title, plot: 'full' } });
+
+    let film;
+
+    if (responseOmdb.data.Response === 'True') {
+        film = { ...responseCinemaBack.data, imdb: responseOmdb.data };
+        dispatch({ type: 'FETCH_FILM', payload: film });
         return;
     }
 
-    response = await omdb.get('', { params: { s: id } });
-    if (!response.data.totalResults >= 1) return;
+    responseOmdb = await omdb.get('', { params: { s: responseCinemaBack.data.title } });
+    if (!responseOmdb.data.totalResults >= 1) return;
 
-    response = await omdb.get('', { params: { i: response.data.Search[0].imdbID, plot: 'full' } });
+    responseOmdb = await omdb.get('', { params: { i: responseOmdb.data.Search[0].imdbID, plot: 'full' } });
 
-    dispatch({ type: 'FETCH_FILM', payload: response.data });
+    film = { ...responseCinemaBack.data, imdb: responseOmdb.data };
+
+    dispatch({ type: 'FETCH_FILM', payload: film });
+};
+
+export const fetchScreening = id => async dispatch => {
+    const response = await cinemaBack.get('screening/' + id);
+    dispatch({ type: 'FETCH_SCREENING', payload: response.data });
+};
+
+export const clearScreenings = () => async dispatch => {
+    dispatch({ type: 'CLEAR_SCREENING' });
 };

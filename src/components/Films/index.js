@@ -5,7 +5,7 @@ import Film from './Film';
 
 class Films extends React.Component {
     componentDidMount() {
-        this.props.fetchFilms(this.props.cinema);
+        this.props.fetchFilms();
     }
     render() {
         return (
@@ -13,12 +13,13 @@ class Films extends React.Component {
         );
     }
 
-    renderList() {
+    renderList = () => {
         if (!this.props.films) return <div />;
         return this.props.films.map(f => {
             if (f.screenings.length > 0) return <Film key={f.idFilm} film={f} />;
+            else return '';
         });
-    }
+    };
 
     renderFilm = film => {
         return (

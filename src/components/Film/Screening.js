@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchScreening } from '../../actions';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Screening extends React.Component {
     componentDidMount() {
@@ -11,10 +11,10 @@ class Screening extends React.Component {
     render() {
         if (this.props.screening == null) return <div></div>;
         return (
-            <div className="card">
+            <Link to={'/reservation'} className="card" onClick={this.clickButton}>
                 Screening nr {this.props.id}
                 {this.renderScreening()}
-            </div>
+            </Link>
         );
     }
 
@@ -22,10 +22,14 @@ class Screening extends React.Component {
         return (
             <div>
                 <div>Price: {this.props.screening.idPrice}</div>
-                <div>Date: {this.props.screening.dateScreening}</div>
+                <div>Date: {this.props.screening.dateScreening.toLocaleString()}</div>
             </div>
         );
     }
+
+    clickButton = e => {
+        //this.props.id
+    };
 }
 
 const mapStateToProps = (state, ownProps) => {

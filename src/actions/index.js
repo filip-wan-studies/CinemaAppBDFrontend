@@ -36,7 +36,9 @@ export const fetchFilm = id => async dispatch => {
 
 export const fetchScreening = id => async dispatch => {
     const response = await cinemaBack.get('screening/' + id);
-    dispatch({ type: 'FETCH_SCREENING', payload: response.data });
+    const date = new Date(response.data.dateScreening);
+
+    dispatch({ type: 'FETCH_SCREENING', payload: { ...response.data, dateScreening: date } });
 };
 
 export const clearScreenings = () => async dispatch => {

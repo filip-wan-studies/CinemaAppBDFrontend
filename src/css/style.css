@@ -3,6 +3,6 @@ a {
     text-decoration: none; /* no underline */
 }
 a:hover {
-    color: black;
+    color: red;
     text-decoration: none; /* no underline */
 }

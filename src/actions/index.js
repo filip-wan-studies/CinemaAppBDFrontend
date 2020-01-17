@@ -14,7 +14,7 @@ export const fetchFilm = id => async dispatch => {
 
     if (_.isEmpty(responseCinemaBack.data)) return;
 
-    let responseOmdb = await omdb.get('', { params: { t: responseCinemaBack.data.title, plot: 'full' } });
+    let responseOmdb = await omdb.get('', { params: { t: responseCinemaBack.data.imdbID, plot: 'full' } });
 
     let film;
 

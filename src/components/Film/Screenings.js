@@ -17,7 +17,7 @@ class Screenings extends React.Component {
     }
 
     renderPoster = () => {
-        return <img src={this.props.film.imdb.Poster} className="img-thumbnail" alt={this.props.film.imdb.Title} />;
+        return <img src = {this.props.film.imdb.Poster} className="img-thumbnail" alt={this.props.film.imdb.Title} />;
     };
 
     renderScreenings = () => {

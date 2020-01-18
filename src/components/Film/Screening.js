@@ -9,10 +9,9 @@ class Screening extends React.Component {
     }
 
     render() {
-        console.log(this.props.screening);
         if (this.props.screening == null) return <div></div>;
         return (
-            <Link to={'/reservation'} className="card" onClick={this.clickButton}>
+            <Link to={'/reservation/' + this.props.id} className="card" onClick={this.clickButton}>
                 Screening nr {this.props.id}
                 {this.renderScreening()}
             </Link>

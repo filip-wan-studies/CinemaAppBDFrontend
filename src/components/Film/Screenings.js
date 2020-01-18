@@ -17,12 +17,13 @@ class Screenings extends React.Component {
     }
 
     renderPoster = () => {
-        if(this.props.film.imdb.Poster !== 'N/A') return <img src = {this.props.film.imdb.Poster} className="img-thumbnail" alt={this.props.film.imdb.Title} />;
+        if (this.props.film.imdb.Poster !== 'N/A')
+            return <img src={this.props.film.imdb.Poster} className="img-thumbnail" alt={this.props.film.imdb.Title} />;
     };
 
     renderScreenings = () => {
         if (this.props.film.screenings.length === 0) return;
-        return this.props.film.screenings.map(s => <Screening key={s.idScreening} id={s.idScreening} />);
+        return this.props.film.screenings.map(s => <Screening key={s.id} id={s.id} />);
     };
 }
 

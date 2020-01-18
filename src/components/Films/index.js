@@ -16,7 +16,7 @@ class Films extends React.Component {
     renderList = () => {
         if (!this.props.films) return <div />;
         return this.props.films.map(f => {
-            if (f.screenings.length > 0) return <Film key={f.idFilm} film={f} />;
+            if (f.screenings.length > 0) return <Film key={f.id} film={f} />;
             else return '';
         });
     };
@@ -26,7 +26,7 @@ class Films extends React.Component {
             <div className="col-sm-10">
                 <h5 className="mb-1">{film.title}</h5>
                 <p>
-                    <small className="text-muted">{film.genreNavigation.name}</small>
+                    <small className="text-muted">{film.genre.name}</small>
                 </p>
             </div>
         );

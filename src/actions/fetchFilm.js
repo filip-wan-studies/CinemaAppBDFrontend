@@ -3,6 +3,7 @@ import omdb from '../apis/omdb';
 import cinemaBack from '../apis/cinemaBack';
 
 export default id => async dispatch => {
+    var skip = false;
     dispatch({ type: 'FETCH_FILM', payload: {} });
 
     let responseCinemaBack = await cinemaBack.get('film/' + id);
@@ -20,11 +21,12 @@ export default id => async dispatch => {
     }
 
     responseOmdb = await omdb.get('', { params: { s: responseCinemaBack.data.title } });
-    if (!responseOmdb.data.totalResults >= 1) return;
+    if (!responseOmdb.data.totalResults >= 1) skip = true;
 
-    responseOmdb = await omdb.get('', { params: { i: responseOmdb.data.Search[0].imdbID, plot: 'full' } });
+    if(!skip) responseOmdb = await omdb.get('', { params: { i: responseOmdb.data.Search[0].imdbID, plot: 'full' } });
 
-    film = { ...responseCinemaBack.data, imdb: responseOmdb.data };
+    if (!skip) film = { ...responseCinemaBack.data, imdb: responseOmdb.data };
+    else film = { ...responseCinemaBack.data, imbd: null };
 
     dispatch({ type: 'FETCH_FILM', payload: film });
 };

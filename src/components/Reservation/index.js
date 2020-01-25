@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchScreening } from '../../actions';
 import FilmInfo from './FilmInfo';
 import LoadingSpinner from '../common/LoadingSpinner';
+import '../../css/styleReservation.css';
 
 class Reservation extends React.Component {
     render() {

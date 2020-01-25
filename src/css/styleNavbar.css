@@ -2,10 +2,10 @@ nav {
     background-color: red;
 }
 
-span {
-    color: black
+nav span {
+    color: black;
 }
 
-span:hover {
-    color: white
+nav a:hover span {
+    color: white;
 }

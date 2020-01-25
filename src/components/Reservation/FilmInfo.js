@@ -15,8 +15,17 @@ class FilmInfo extends React.Component {
             <LoadingSpinner></LoadingSpinner>
         ) : (
             <div>
-                <div className="d-flex justify-content-between mb-3">
-                    <h3 className="m-3">Title: {this.props.film.imdb.Title}</h3>
+                <div className="d-flex mb-3">
+                    <div className="d-flex flex-row mb-3">
+                        <div>
+                            <img
+                                src={this.props.film.imdb.Poster}
+                                className="img-thumbnail img-small"
+                                alt={this.props.film.imdb.Title}
+                            />
+                        </div>
+                        <h3 className="m-3">Title: {this.props.film.imdb.Title}</h3>
+                    </div>
                 </div>
             </div>
         );

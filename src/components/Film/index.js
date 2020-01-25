@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchFilm } from '../../actions';
 import FilmInfo from './FilmInfo';
 import Screenings from './Screenings';
+import LoadingSpinner from '../common/LoadingSpinner';
 
 class Film extends React.Component {
     componentDidMount() {
@@ -11,18 +12,7 @@ class Film extends React.Component {
     }
 
     render() {
-        if (_.isEmpty(this.props.film))
-            return (
-                <div className="d-flex flex-column align-items-center position-relative mt-5">
-                    <div
-                        className="spinner-border text-success"
-                        style={{ width: '10rem', height: '10rem' }}
-                        role="status"
-                    >
-                        <span className="sr-only">Loading...</span>
-                    </div>
-                </div>
-            );
+        if (_.isEmpty(this.props.film)) return <LoadingSpinner></LoadingSpinner>;
         return (
             <div className="media row my-5 justify-content-center">
                 <FilmInfo />

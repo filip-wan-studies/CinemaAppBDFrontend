@@ -14,7 +14,7 @@ class Screening extends React.Component {
         return (
             <div className="card bg-dark text-white">
                 <Link to={'/reservation/' + this.props.id} onClick={this.clickButton}>
-                    <span1> Screening nr {this.props.id} </span1>
+                    <span> Screening nr {this.props.id} </span>
                     {this.renderScreening()}
                 </Link>
             </div>
@@ -25,10 +25,12 @@ class Screening extends React.Component {
         return (
             <div>
                 <div>
-                    <span1>Price ({this.props.screening.price.name}): {this.props.screening.price.ammount  + ' zł'}</span1>
+                    <span>
+                        Price ({this.props.screening.price.name}): {this.props.screening.price.ammount + ' zł'}
+                    </span>
                 </div>
                 <div>
-                    <span1>Date: {this.props.screening.screeningDate.toLocaleString()}</span1>
+                    <span>Date: {this.props.screening.screeningDate.toLocaleString()}</span>
                 </div>
             </div>
         );

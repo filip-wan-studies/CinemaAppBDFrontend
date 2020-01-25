@@ -5,6 +5,7 @@ import { fetchFilm } from '../../actions';
 import FilmInfo from './FilmInfo';
 import Screenings from './Screenings';
 import LoadingSpinner from '../common/LoadingSpinner';
+import '../../css/styleFilms.css';
 
 class Film extends React.Component {
     componentDidMount() {

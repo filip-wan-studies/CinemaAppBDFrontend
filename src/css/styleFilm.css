@@ -1,12 +1,16 @@
-aaa {
+.aaa {
     /*width = '50%'';*/
     background-color: #343a40;
 }
 
-h51 {
+h1 {
     color: white;
 }
 
-h51:hover{
-    color:red;
+a:hover {
+    text-decoration: none;
+}
+
+a:hover h1 {
+    color: red;
 }

@@ -1,12 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import '../../css/styleFilms.css';
 
 class FilmInfo extends React.Component {
     render() {
         if (this.props.film)
-            if (this.props.film.imbd !== null)
-            {
+            if (this.props.film.imbd !== null) {
                 return (
                     <div className="media-body col-sm-8 col-sm-offset-2">
                         <div className="d-flex justify-content-between mb-3">
@@ -58,9 +56,7 @@ class FilmInfo extends React.Component {
                         </table>
                     </div>
                 );
-            }
-            else
-            {
+            } else {
                 //Gdy nie znaleziono filmu w bazie imbd jak wyświetlic i tytuł z naszej bazy? Na przykład #/film/34
                 return (
                     <div className="media-body col-sm-8 col-sm-offset-2">
@@ -113,7 +109,7 @@ class FilmInfo extends React.Component {
                         </table>
                     </div>
                 );
-            }   
+            }
         else return <div />;
     }
 }

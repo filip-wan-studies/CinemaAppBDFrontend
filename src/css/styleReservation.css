@@ -10,3 +10,7 @@
 .img-zoom:hover {
     transform: scale(3) translate(35%, 35%);
 }
+
+.seats button {
+    width: 2.6rem;
+}

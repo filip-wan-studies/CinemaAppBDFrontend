@@ -11,14 +11,13 @@ class FilmInfo extends React.Component {
     }
 
     render() {
-        console.log(this.props.film);
         return _.isEmpty(this.props.film) ? (
             <LoadingSpinner></LoadingSpinner>
         ) : (
             <div className="border-bottom border-danger">
                 <div className="d-flex m-3">
                     <div className="d-flex flex-row">
-                        {this.renderImage()}
+                        <div>{this.renderImage()}</div>
                         <h3 className="m-3">Title: {this.props.film.title}</h3>
                     </div>
                 </div>

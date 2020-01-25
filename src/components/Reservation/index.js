@@ -16,7 +16,7 @@ class Reservation extends React.Component {
         ) : (
             <div>
                 <FilmInfo id={this.props.screening.film.id}></FilmInfo>
-                <Seats id={this.props.match.params.id}></Seats>
+                <Seats screening={this.props.screening} id={this.props.screening.id}></Seats>
             </div>
         );
     }

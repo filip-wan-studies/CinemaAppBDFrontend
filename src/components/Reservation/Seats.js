@@ -1,27 +1,54 @@
+import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import { reserveSeat, reserveSeatCancel, reservationClear, postReservation } from '../../actions';
+import { reserveSeat, reserveSeatCancel, reservationClear, confirmReservation } from '../../actions';
 
 class Seats extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { email: '' };
+    }
+
     componentDidMount() {
-        this.props.reservationClear();
+        //if (this.props.reservation === undefined) return;
+        if (
+            this.props.reservation.seanceId !== this.props.screening.id ||
+            this.props.reservation.response !== undefined
+        )
+            this.props.reservationClear();
+        else if (this.props.reservation.Email !== undefined) this.setState({ email: this.props.reservation.Email });
     }
 
     render() {
         return (
             <div>
-                <div className="d-flex justify-content-center m-3">
-                    <div className="border border-danger flex-column p-3 seats">{this.renderSeats()}</div>
+                <div className="d-flex align-items-center m-3 flex-column">
+                    <div className="border border-danger p-3 seats">{this.renderSeats()}</div>
+                    <div className="d-flex flex-row align-items-center p-3">
+                        <div className="mr-5">
+                            <label htmlFor="emailInput" className="col-form-label">
+                                Email adress
+                            </label>
+                            <input
+                                type="email"
+                                className="form-control"
+                                id="emailInput"
+                                value={this.state.email}
+                                onChange={this.handleChange}
+                                placeholder="Email adress"
+                                required
+                            />
+                        </div>
+                        <button className="btn btn-success ml-5" onClick={this.clickNextButton}>
+                            Next
+                        </button>
+                    </div>
                 </div>
-                <button className="btn btn-success" onClick={this.clickSeatSubmit}>
-                    Submit
-                </button>
             </div>
         );
     }
 
     renderSeats() {
-        console.log('reservation: ', this.props.reservation);
         let seatsArr = [];
         this.props.screening.room.seats.forEach(s => {
             if (seatsArr[s.rowNumber - 1] === undefined) seatsArr[s.rowNumber - 1] = [];
@@ -32,9 +59,9 @@ class Seats extends React.Component {
             <div key={row[0].rowNumber} className="flex-row">
                 {row.map(s => (
                     <button
-                        className={s.isReserved ? 'm-1 btn btn-secondary disabled' : 'm-1 btn btn-light'}
+                        className={this.seatClass(s)}
                         onClick={this.clickSeatButton}
-                        value={s.isReserved ? s.isReserved : s.id}
+                        value={s.id}
                         type="button"
                         id={s.id}
                         key={s.id}
@@ -46,22 +73,33 @@ class Seats extends React.Component {
         ));
     }
 
+    seatClass = seat => {
+        if (seat.isReserved) return 'm-1 btn btn-secondary disabled';
+
+        if (this.props.reservation.seats.some(s => s.SeatId === seat.id)) return 'm-1 btn btn-danger';
+
+        return 'm-1 btn btn-light';
+    };
+
+    handleChange = event => {
+        this.setState({ email: event.target.value });
+    };
+
     clickSeatButton = e => {
-        if (e.target.value === 'true') return;
-        if (e.target.className === 'm-1 btn btn-danger') {
-            this.props.reserveSeatCancel(this.props.screening.id, parseInt(e.target.value));
-            e.target.className = 'm-1 btn btn-light';
+        const seat = this.props.screening.room.seats.find(s => s.id === parseInt(e.target.value));
+
+        if (!seat || seat.isReserved === true) return;
+
+        if (this.props.reservation !== undefined && this.props.reservation.seats.some(s => s.SeatId === seat.id)) {
+            this.props.reserveSeatCancel(this.props.screening.id, seat.id);
         } else {
-            this.props.reserveSeat(this.props.screening.id, parseInt(e.target.value));
-            e.target.className = 'm-1 btn btn-danger';
+            this.props.reserveSeat(this.props.screening.id, seat.id);
         }
     };
-    clickSeatSubmit = e => {
-        this.props.postReservation({
-            Email: 'a@b.c',
-            SeanceId: this.props.screening.id,
-            seats: this.props.reservation.seats
-        });
+
+    clickNextButton = e => {
+        if (!_.isEmpty(this.props.reservation.seats) && this.state.email !== '')
+            this.props.confirmReservation(this.state.email);
     };
 }
 
@@ -71,4 +109,6 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, { reserveSeat, reserveSeatCancel, reservationClear, postReservation })(Seats);
+export default connect(mapStateToProps, { reserveSeat, reserveSeatCancel, reservationClear, confirmReservation })(
+    Seats
+);

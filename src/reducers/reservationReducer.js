@@ -1,4 +1,4 @@
-export default (state = { seats: [] }, action) => {
+export default (state = { seats: [], isReady: false }, action) => {
     switch (action.type) {
         case 'RESERVE_SEAT':
             let s = { ...state };
@@ -9,12 +9,16 @@ export default (state = { seats: [] }, action) => {
         case 'RESERVE_SEAT_CANCEL':
             if (state.seanceId !== action.payload.seanceId) return state;
             return { ...state, seats: state.seats.filter(s => s.SeatId !== action.payload.seatId) };
+        case 'CONFIRM_RESERVATION':
+            return { ...state, Email: action.payload.Email, isReady: true };
+        case 'UNCONFIRM_RESERVATION':
+            return { ...state, isReady: false };
         case 'CLEAR_RESERVATION':
             return { seats: [] };
         case 'POST_RESERVATION': {
             return {
                 ...state,
-                responce: action.payload
+                response: action.payload
             };
         }
         default:

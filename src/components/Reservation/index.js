@@ -6,29 +6,36 @@ import FilmInfo from './FilmInfo';
 import LoadingSpinner from '../common/LoadingSpinner';
 import '../../css/styleReservation.css';
 import Seats from './Seats';
+import Confirm from './Confirm';
 
 class Reservation extends React.Component {
     render() {
         this.checkIfScreeningIsLoaded();
 
-        return _.isEmpty(this.props.screening) ? (
-            <LoadingSpinner></LoadingSpinner>
-        ) : (
-            <div>
-                <FilmInfo id={this.props.screening.film.id}></FilmInfo>
-                <Seats screening={this.props.screening} id={this.props.screening.id}></Seats>
-            </div>
-        );
+        if (_.isEmpty(this.props.screening)) {
+            return <LoadingSpinner />;
+        } else if (this.props.reservation.isReady) {
+            return <Confirm />;
+        } else {
+            return (
+                <div>
+                    <FilmInfo id={this.props.screening.film.id} />
+                    <Seats screening={this.props.screening} id={this.props.screening.id} />
+                </div>
+            );
+        }
     }
 
     checkIfScreeningIsLoaded = () => {
-        if (_.isEmpty(this.props.screening)) this.props.fetchScreening(this.props.match.params.id);
+        if (_.isEmpty(this.props.screening) || this.props.reservation.response !== undefined)
+            this.props.fetchScreening(this.props.match.params.id);
     };
 }
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        screening: state.screenings[ownProps.match.params.id]
+        screening: state.screenings[ownProps.match.params.id],
+        reservation: state.reservation
     };
 };
 

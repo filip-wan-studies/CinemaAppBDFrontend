@@ -10,9 +10,16 @@ class FilmInfo extends React.Component {
     }
 
     render() {
-        console.log(this.props.film, this.props.id);
-        if (_.isEmpty(this.props.film)) return <LoadingSpinner></LoadingSpinner>;
-        else return <div>{this.props.film.title}</div>;
+        console.log(this.props.film);
+        return _.isEmpty(this.props.film) ? (
+            <LoadingSpinner></LoadingSpinner>
+        ) : (
+            <div>
+                <div className="d-flex justify-content-between mb-3">
+                    <h3 className="m-3">Title: {this.props.film.imdb.Title}</h3>
+                </div>
+            </div>
+        );
     }
 }
 

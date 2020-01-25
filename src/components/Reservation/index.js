@@ -5,6 +5,7 @@ import { fetchScreening } from '../../actions';
 import FilmInfo from './FilmInfo';
 import LoadingSpinner from '../common/LoadingSpinner';
 import '../../css/styleReservation.css';
+import Seats from './Seats';
 
 class Reservation extends React.Component {
     render() {
@@ -15,6 +16,7 @@ class Reservation extends React.Component {
         ) : (
             <div>
                 <FilmInfo id={this.props.screening.film.id}></FilmInfo>
+                <Seats id={this.props.match.params.id}></Seats>
             </div>
         );
     }

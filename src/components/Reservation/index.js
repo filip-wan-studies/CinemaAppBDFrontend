@@ -1,16 +1,26 @@
+import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchScreening } from '../../actions';
+import FilmInfo from './FilmInfo';
+import LoadingSpinner from '../common/LoadingSpinner';
 
 class Reservation extends React.Component {
-    componentDidMount() {
-        if (this.props.screening === undefined) this.props.fetchScreening(this.props.match.params.id); //Res {this.props.screening == undefined ? this.props.screening.id : ''}
+    render() {
+        this.checkIfScreeningIsLoaded();
+
+        return _.isEmpty(this.props.screening) ? (
+            <LoadingSpinner></LoadingSpinner>
+        ) : (
+            <div>
+                <FilmInfo id={this.props.screening.film.id}></FilmInfo>
+            </div>
+        );
     }
 
-    render() {
-        if (this.props.screening == null) return <div></div>;
-        return <div>{this.props.screening.film.title}</div>;
-    }
+    checkIfScreeningIsLoaded = () => {
+        if (_.isEmpty(this.props.screening)) this.props.fetchScreening(this.props.match.params.id);
+    };
 }
 
 const mapStateToProps = (state, ownProps) => {

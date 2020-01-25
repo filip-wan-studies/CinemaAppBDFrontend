@@ -15,22 +15,27 @@ class FilmInfo extends React.Component {
         return _.isEmpty(this.props.film) ? (
             <LoadingSpinner></LoadingSpinner>
         ) : (
-            <div>
+            <div className="border-bottom border-danger">
                 <div className="d-flex m-3">
-                    <div className="d-flex flex-row mb-3">
-                        <div>
-                            <img
-                                src={this.props.film.imdb.Poster}
-                                className="img-thumbnail img-small img-zoom"
-                                alt={this.props.film.imdb.Title}
-                            />
-                        </div>
-                        <h3 className="m-3">Title: {this.props.film.imdb.Title}</h3>
+                    <div className="d-flex flex-row">
+                        {this.renderImage()}
+                        <h3 className="m-3">Title: {this.props.film.title}</h3>
                     </div>
                 </div>
             </div>
         );
     }
+
+    renderImage = () =>
+        this.props.film.imdb ? (
+            <img
+                src={this.props.film.imdb.Poster ? this.props.film.imdb.Poster : null}
+                className="img-thumbnail img-small img-zoom"
+                alt={this.props.film.imdb.Title}
+            />
+        ) : (
+            ''
+        );
 }
 
 const mapStateToProps = state => {

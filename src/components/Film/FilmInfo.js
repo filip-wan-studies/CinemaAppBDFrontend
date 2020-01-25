@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import '../../css/styleFilms.css';
 
 class FilmInfo extends React.Component {
     render() {
@@ -64,7 +65,7 @@ class FilmInfo extends React.Component {
                 return (
                     <div className="media-body col-sm-8 col-sm-offset-2">
                         <div className="d-flex justify-content-between mb-3">
-                            <h1 className="mt-0">{this.props.film.Id}</h1>
+                            <h1 className="mt-0">{this.props.film.Title}</h1>
                             <div className="d-flex flex-column align-items-center">
                                 <h2 className="m-0">
                                     <span className="text-warning">★</span> N/A

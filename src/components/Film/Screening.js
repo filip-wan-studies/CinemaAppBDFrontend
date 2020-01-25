@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchScreening } from '../../actions';
 import { Link } from 'react-router-dom';
+import '../../css/styleScreening.css';
 
 class Screening extends React.Component {
     componentDidMount() {
@@ -11,10 +12,12 @@ class Screening extends React.Component {
     render() {
         if (this.props.screening == null) return <div></div>;
         return (
-            <Link to={'/reservation/' + this.props.id} className="card" onClick={this.clickButton}>
-                Screening nr {this.props.id}
-                {this.renderScreening()}
-            </Link>
+            <div className="card bg-dark text-white">
+                <Link to={'/reservation/' + this.props.id} onClick={this.clickButton}>
+                    <span1> Screening nr {this.props.id} </span1>
+                    {this.renderScreening()}
+                </Link>
+            </div>
         );
     }
 
@@ -22,9 +25,11 @@ class Screening extends React.Component {
         return (
             <div>
                 <div>
-                    Price ({this.props.screening.price.name}): {this.props.screening.price.ammount}
+                    <span1>Price ({this.props.screening.price.name}): {this.props.screening.price.ammount  + ' zł'}</span1>
                 </div>
-                <div>Date: {this.props.screening.screeningDate.toLocaleString()}</div>
+                <div>
+                    <span1>Date: {this.props.screening.screeningDate.toLocaleString()}</span1>
+                </div>
             </div>
         );
     }

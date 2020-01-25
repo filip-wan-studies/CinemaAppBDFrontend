@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '../../css/styleFilm.css';
 
 class Film extends React.Component {
     render() {
         return (
-            <div className="card col-auto mb-3" style={{ width: '50%' }}>
+            <aaa className="w3-card col-auto mb-3" style={{ width: '50%'}}>
                 <Link to={'/film/' + this.props.film.id}>
                     <div className="col-sm-10 card-body">
-                        <h5 className="mb-1">{this.props.film.title}</h5>
+                        <h51 className="mb-1">{this.props.film.title}</h51>
                         <p>
                             <small className="text-muted">
                                 {this.props.film.genre.name} | {this.props.film.screenings.length} screenigns
@@ -15,7 +16,7 @@ class Film extends React.Component {
                         </p>
                     </div>
                 </Link>
-            </div>
+            </aaa>
         );
     }
 }

@@ -5,7 +5,7 @@ import { HashRouter } from 'react-router-dom';
 import '../css/style.css';
 
 function App() {
-    return (
+    return (        
         <HashRouter>
             <Navbar />
             <Routes />

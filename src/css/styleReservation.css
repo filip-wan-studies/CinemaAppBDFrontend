@@ -2,3 +2,11 @@
     width: auto;
     height: 6rem;
 }
+
+.img-zoom {
+    transition: all 0.2s;
+}
+
+.img-zoom:hover {
+    transform: scale(3) translate(35%, 35%);
+}

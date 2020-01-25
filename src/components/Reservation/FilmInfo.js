@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchFilm } from '../../actions';
 import LoadingSpinner from '../common/LoadingSpinner';
+import '../../css/styleReservation.css';
 
 class FilmInfo extends React.Component {
     componentDidMount() {
@@ -15,12 +16,12 @@ class FilmInfo extends React.Component {
             <LoadingSpinner></LoadingSpinner>
         ) : (
             <div>
-                <div className="d-flex mb-3">
+                <div className="d-flex m-3">
                     <div className="d-flex flex-row mb-3">
                         <div>
                             <img
                                 src={this.props.film.imdb.Poster}
-                                className="img-thumbnail img-small"
+                                className="img-thumbnail img-small img-zoom"
                                 alt={this.props.film.imdb.Title}
                             />
                         </div>

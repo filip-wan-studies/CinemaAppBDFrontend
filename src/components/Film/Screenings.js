@@ -22,7 +22,7 @@ class Screenings extends React.Component {
             if (this.props.film.imdb.Poster !== 'N/A')
                 return (
                 <div>
-                    <img src={this.props.film.imdb.Poster} className="img-thumbnail" alt={this.props.film.imdb.Title}  />
+                    <img src={this.props.film.imdb.Poster} className="img-thumbnail" alt={this.props.film.imdb.Title} />
                     <p></p>
                 </div>
                 );

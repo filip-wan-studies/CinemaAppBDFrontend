@@ -1,12 +1,19 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { unconfirmReservation, postReservation } from '../../actions';
 
 class Confirm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { redirect: false };
+    }
+
     render() {
         console.log(this.props.reservation);
         return (
             <div>
+                {this.state.redirect ? <Redirect push to="/" /> : ''}
                 <button className="btn btn-danger" onClick={this.clickReturnButton}>
                     Back
                 </button>
@@ -17,8 +24,9 @@ class Confirm extends React.Component {
         );
     }
 
-    clickSubmitButton = e => {
-        this.props.postReservation(this.props.reservation);
+    clickSubmitButton = async e => {
+        await this.props.postReservation(this.props.reservation);
+        this.setState({ redirect: true });
     };
 
     clickReturnButton = e => {

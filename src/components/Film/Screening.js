@@ -22,7 +22,7 @@ class Screening extends React.Component {
         return (
             <div>
                 <div>
-                    Price ({this.props.screening.price.name}): {this.props.screening.price.ammount}
+                    Price ({this.props.screening.price.name}): {this.props.screening.price.ammount  + ' zł'}
                 </div>
                 <div>Date: {this.props.screening.screeningDate.toLocaleString()}</div>
             </div>

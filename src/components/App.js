@@ -7,7 +7,6 @@ import '../css/style.css';
 function App() {
     return (        
         <HashRouter>
-           <style>{'body { background-color: #202020; }'}</style>
             <Navbar />
             <Routes />
         </HashRouter>

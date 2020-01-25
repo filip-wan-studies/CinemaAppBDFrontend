@@ -10,7 +10,7 @@ tr {
     color: white;
 }
 
-td:hover, td:hover{
+td:hover, th:hover{
     color: red;
 }
 

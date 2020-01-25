@@ -1,0 +1,11 @@
+nav {
+    background-color: red;
+}
+
+span {
+    color: black
+}
+
+span:hover {
+    color: white
+}

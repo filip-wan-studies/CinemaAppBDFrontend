@@ -5,8 +5,9 @@ import { HashRouter } from 'react-router-dom';
 import '../css/style.css';
 
 function App() {
-    return (
+    return (        
         <HashRouter>
+           <style>{'body { background-color: #202020; }'}</style>
             <Navbar />
             <Routes />
         </HashRouter>

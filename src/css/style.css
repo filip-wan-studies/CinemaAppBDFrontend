@@ -1,8 +1,14 @@
 a {
     color: black;
+    background-color:  #474747;
+    border-color: #474747;
     text-decoration: none; /* no underline */
 }
 a:hover {
     color: red;
     text-decoration: none; /* no underline */
+}
+
+b {
+    background-color:  #474747;
 }

@@ -1,7 +1,13 @@
 import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import { reserveSeat, reserveSeatCancel, reservationClear, confirmReservation } from '../../actions';
+import {
+    reserveSeat,
+    reserveSeatCancel,
+    reservationClear,
+    confirmReservation,
+    confirmReservationForUser
+} from '../../actions';
 
 class Seats extends React.Component {
     constructor(props) {
@@ -25,20 +31,7 @@ class Seats extends React.Component {
                 <div className="d-flex align-items-center m-3 flex-column">
                     <div className="border border-danger p-3 seats">{this.renderSeats()}</div>
                     <div className="d-flex flex-row align-items-center p-3">
-                        <div className="mr-5">
-                            <label htmlFor="emailInput" className="col-form-label">
-                                Email adress
-                            </label>
-                            <input
-                                type="email"
-                                className="form-control"
-                                id="emailInput"
-                                value={this.state.email}
-                                onChange={this.handleChange}
-                                placeholder="Email adress"
-                                required
-                            />
-                        </div>
+                        {this.renderEmailInput()}
                         <button className="btn btn-success ml-5" onClick={this.clickNextButton}>
                             Next
                         </button>
@@ -46,6 +39,27 @@ class Seats extends React.Component {
                 </div>
             </div>
         );
+    }
+
+    renderEmailInput() {
+        if (!this.props.auth.isLoggedIn) {
+            return (
+                <div className="mr-5">
+                    <label htmlFor="emailInput" className="col-form-label">
+                        Email adress
+                    </label>
+                    <input
+                        type="email"
+                        className="form-control"
+                        id="emailInput"
+                        value={this.state.email}
+                        onChange={this.handleChange}
+                        placeholder="Email adress"
+                        required
+                    />
+                </div>
+            );
+        }
     }
 
     renderSeats() {
@@ -98,17 +112,30 @@ class Seats extends React.Component {
     };
 
     clickNextButton = e => {
-        if (!_.isEmpty(this.props.reservation.seats) && this.state.email !== '')
-            this.props.confirmReservation(this.state.email);
+        console.log(
+            this.state.email,
+            !_.isEmpty(this.props.reservation.seats),
+            this.props.auth.isLoggedIn,
+            this.props.auth.id
+        );
+        if (!_.isEmpty(this.props.reservation.seats) && (this.state.email !== '' || this.props.auth.isLoggedIn))
+            this.props.auth.isLoggedIn
+                ? this.props.confirmReservationForUser(this.props.auth.id)
+                : this.props.confirmReservation(this.state.email);
     };
 }
 
 const mapStateToProps = state => {
     return {
-        reservation: state.reservation
+        reservation: state.reservation,
+        auth: state.auth
     };
 };
 
-export default connect(mapStateToProps, { reserveSeat, reserveSeatCancel, reservationClear, confirmReservation })(
-    Seats
-);
+export default connect(mapStateToProps, {
+    reserveSeat,
+    reserveSeatCancel,
+    reservationClear,
+    confirmReservation,
+    confirmReservationForUser
+})(Seats);

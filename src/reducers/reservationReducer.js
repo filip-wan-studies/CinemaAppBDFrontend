@@ -10,7 +10,7 @@ export default (state = { seats: [], isReady: false }, action) => {
             if (state.seanceId !== action.payload.seanceId) return state;
             return { ...state, seats: state.seats.filter(s => s.SeatId !== action.payload.seatId) };
         case 'CONFIRM_RESERVATION':
-            return { ...state, Email: action.payload.Email, isReady: true };
+            return { ...state, Email: action.payload.Email, ClientId: action.payload.ClientId, isReady: true };
         case 'UNCONFIRM_RESERVATION':
             return { ...state, isReady: false };
         case 'CLEAR_RESERVATION':

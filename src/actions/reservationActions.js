@@ -15,8 +15,15 @@ export const reservationClear = () => dispatch => {
 };
 
 export const confirmReservation = Email => dispatch => {
+    console.log(Email, 'email of Type: ', typeof Email);
     if (!Email || typeof Email !== 'string') return;
     dispatch({ type: 'CONFIRM_RESERVATION', payload: { Email } });
+};
+
+export const confirmReservationForUser = id => dispatch => {
+    console.log(id, 'id of Type: ', typeof id);
+    if (!id || typeof id !== 'number') return;
+    dispatch({ type: 'CONFIRM_RESERVATION', payload: { ClientId: id } });
 };
 
 export const unconfirmReservation = () => dispatch => {
@@ -24,9 +31,10 @@ export const unconfirmReservation = () => dispatch => {
 };
 
 export const postReservation = reservation => async dispatch => {
+    console.log(reservation, !reservation.Email && !reservation.ClientId);
     if (
         !reservation ||
-        !reservation.Email ||
+        (!reservation.Email && !reservation.ClientId) ||
         !reservation.seanceId ||
         !reservation.seats ||
         reservation.seats.length < 1
@@ -38,6 +46,7 @@ export const postReservation = reservation => async dispatch => {
     await reservation.seats.forEach(async s => {
         const r = await cinemaBack.post('reservation/', {
             Email: reservation.Email,
+            ClientId: reservation.ClientId,
             Ticket: { ScreeningId: reservation.seanceId, ScreenSeatId: s.SeatId }
         });
         await response.push(r);

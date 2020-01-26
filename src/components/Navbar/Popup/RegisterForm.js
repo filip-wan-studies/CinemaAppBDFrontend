@@ -159,7 +159,6 @@ class RegisterForm extends React.Component {
             Surname: this.state.lastName,
             PhoneNumber: parseInt(this.state.phone.split('-').join(''))
         };
-        console.log("You're trying to register", registration);
         await this.props.postClient(registration);
         if (this.props.response.status === 200) {
             this.props.togglePopup(false);

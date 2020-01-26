@@ -6,7 +6,6 @@ export const checkToken = () => async dispatch => {
     if (!token) return;
 
     var decodedToken = decode(token);
-    console.log('Token: ', decodedToken, new Date().getTime() / 1000);
 
     if (decodedToken.exp < new Date().getTime() / 1000) {
         localStorage.removeItem('token');
@@ -19,7 +18,6 @@ export const checkToken = () => async dispatch => {
         response = { status: 400 };
         console.error(e);
     }
-    console.log('Resp: ', response);
     dispatch({ type: 'LOGIN', payload: { response: response.data } });
 };
 

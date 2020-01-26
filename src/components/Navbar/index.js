@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -12,7 +11,6 @@ class Navbar extends React.Component {
     }
 
     render() {
-        console.log(this.props.auth);
         return (
             <div>
                 <nav className="navbar sticky-top">

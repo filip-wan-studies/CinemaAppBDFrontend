@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import { togglePopup, popupToggleRegister, login } from '../../../actions';
@@ -81,7 +80,6 @@ class LoginForm extends React.Component {
             Email: this.state.email,
             Secret: this.state.password
         };
-        console.log("You're trying to log in", credentials);
         await this.props.login(credentials);
 
         if (this.props.auth.isLoggedIn) this.props.togglePopup(false);

@@ -95,7 +95,6 @@ class RegisterForm extends React.Component {
                                 onChange={this.handleChange}
                                 id="phoneInput"
                                 placeholder="Phone"
-                                required
                             />
                         </div>
                     </div>

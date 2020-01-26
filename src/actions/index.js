@@ -3,6 +3,7 @@ import fetchFilm from './fetchFilm';
 import fetchFilms from './fetchFilms';
 import fetchScreening from './fetchScreening';
 import cinemaBack from '../apis/cinemaBack';
+import { render } from '@testing-library/react';
 
 export { clearScreenings, fetchFilm, fetchFilms, fetchScreening };
 export const reserveSeat = (seanceId, seatId) => dispatch => {
@@ -56,4 +57,17 @@ export const togglePopup = isToggled => dispatch => {
 
 export const popupToggleRegister = isToggled => dispatch => {
     dispatch({ type: 'TOGGLE_REGISTER_POPUP', payload: { isToggled } });
+};
+
+export const postClient = client => async dispatch => {
+    if (!client || !client.Email || !client.Name || !client.Surname || !client.Secret) return null;
+    let response;
+    try {
+        response = await cinemaBack.post('client/', { ...client });
+    } catch (e) {
+        response = { status: 400 };
+        console.error(e);
+    }
+
+    dispatch({ type: 'POST_CLIENT', payload: { response } });
 };

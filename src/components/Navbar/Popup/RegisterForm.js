@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { popupToggleRegister } from '../../../actions';
+import { togglePopup, popupToggleRegister, postClient } from '../../../actions';
 
 class RegisterForm extends React.Component {
     constructor(props) {
@@ -153,19 +153,22 @@ class RegisterForm extends React.Component {
 
     handleSubmit = async event => {
         let registration = {
-            email: this.state.email,
-            password: this.state.password,
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            phone: this.state.phone
+            Email: this.state.email,
+            Secret: this.state.password,
+            Name: this.state.firstName,
+            Surname: this.state.lastName,
+            PhoneNumber: parseInt(this.state.phone.split('-').join(''))
         };
         console.log("You're trying to register", registration);
+        await this.props.postClient(registration);
+        if (this.props.response.status === 200) this.props.togglePopup(false);
+        else alert('Podany Email już istnieje');
         event.persist();
     };
 }
 
 const mapStateToProps = state => {
-    return { isRegisterToggled: state.popup.isRegisterToggled };
+    return { popup: state.popup, response: state.client.response };
 };
 
-export default connect(mapStateToProps, { popupToggleRegister })(RegisterForm);
+export default connect(mapStateToProps, { togglePopup, popupToggleRegister, postClient })(RegisterForm);

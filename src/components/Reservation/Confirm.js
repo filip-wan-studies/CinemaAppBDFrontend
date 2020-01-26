@@ -43,7 +43,7 @@ class Confirm extends React.Component {
 
     renderSeats = () => {
         return this.props.reservation.seats.map(s => {
-            const seat = this.props.screening.screenseats.find(se => se.id == s.SeatId).seat;
+            const seat = this.props.screening.screenseats.find(se => se.id === s.SeatId).seat;
             return (
                 <p key={s.SeatId} className="card-text">
                     Row - {seat.rowNumber}, Seat - {seat.seatNumber}

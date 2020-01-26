@@ -84,7 +84,7 @@ class LoginForm extends React.Component {
         console.log("You're trying to log in", credentials);
         await this.props.login(credentials);
 
-        if (!_.isEmpty(this.props.auth)) this.props.togglePopup(false);
+        if (this.props.auth.isLoggedIn) this.props.togglePopup(false);
         else alert('Niepoprawne dane logowania');
         event.persist();
     };

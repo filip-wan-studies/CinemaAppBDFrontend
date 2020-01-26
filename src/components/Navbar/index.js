@@ -28,7 +28,7 @@ class Navbar extends React.Component {
     }
 
     renderLoginButton = () => {
-        if (_.isEmpty(this.props.auth)) {
+        if (!this.props.auth.isLoggedIn) {
             return (
                 <button onClick={this.onClickButtonLogin} className="btn btn-dark">
                     Login

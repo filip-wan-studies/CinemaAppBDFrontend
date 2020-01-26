@@ -10,9 +10,9 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="card-body m-2">
                 <form id="formLogin" onSubmit={this.handleSubmit}>
-                    <h1>Login</h1>
+                    <h1 className="card-title mb-4">Login</h1>
                     <div className="form-group row">
                         <label htmlFor="firstNameInput" className="col-sm-3 col-form-label">
                             Email
@@ -48,9 +48,9 @@ class LoginForm extends React.Component {
                         </div>
                     </div>
                 </form>
-                <div className="d-flex justify-content-around mt-4">
+                <div className="d-flex justify-content-around m-4">
                     <button className="btn btn-light" onClick={e => this.props.popupToggleRegister(true)}>
-                        Reservation
+                        Register
                     </button>
                     <button type="submit" form="formLogin" className="btn btn-danger">
                         Login

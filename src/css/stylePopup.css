@@ -9,13 +9,23 @@
     margin: auto;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .popup_inner {
     position: absolute;
-    left: 25%;
-    right: 25%;
-    top: 25%;
-    bottom: 25%;
-    margin: auto;
+    text-align: center;
+}
+
+.close {
+    text-align: right;
+    margin: 0.4rem 0.6rem;
+    margin-bottom: 0;
+}
+
+.popup_inner label {
+    text-align: right;
+    width: 12rem;
 }

@@ -11,8 +11,8 @@ class Popup extends React.Component {
         console.log(this.props.popup);
         return (
             <div className="popup">
-                <div className="popup_inner card  text-white bg-dark">
-                    <div className="mr-3 mt-2">
+                <div className="popup_inner">
+                    <div className="card border-red text-white bg-dark">
                         <button
                             type="button"
                             className="close text-danger"
@@ -21,8 +21,6 @@ class Popup extends React.Component {
                         >
                             <span>&times;</span>
                         </button>
-                    </div>
-                    <div className="card-body">
                         {this.props.popup.isRegisterToggled ? <RegisterForm /> : <LoginForm />}
                     </div>
                 </div>

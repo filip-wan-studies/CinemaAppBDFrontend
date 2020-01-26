@@ -7,7 +7,6 @@ import Popup from './Popup';
 
 class Navbar extends React.Component {
     render() {
-        console.log(this.props.popup);
         return (
             <div>
                 <nav className="navbar sticky-top">

@@ -57,7 +57,6 @@ class Seats extends React.Component {
 
         return seatsArr.map(row => (
             <div key={row[0].seat.rowNumber} className="flex-row">
-                {console.log(row[0])}
                 {row.map(s => (
                     <button
                         className={this.seatClass(s)}

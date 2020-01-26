@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import { togglePopup } from '../../../actions';
@@ -8,7 +7,6 @@ import RegisterForm from './RegisterForm';
 
 class Popup extends React.Component {
     render() {
-        console.log(this.props.popup);
         return (
             <div className="popup">
                 <div className="popup_inner">

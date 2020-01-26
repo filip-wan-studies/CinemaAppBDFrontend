@@ -29,7 +29,6 @@ export const unconfirmReservation = () => dispatch => {
 };
 
 export const postReservation = reservation => async dispatch => {
-    console.log(reservation);
     if (
         !reservation ||
         !reservation.Email ||

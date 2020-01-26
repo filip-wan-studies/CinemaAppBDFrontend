@@ -10,7 +10,6 @@ class Confirm extends React.Component {
     }
 
     render() {
-        console.log(this.props.reservation);
         return (
             <div>
                 {this.state.redirect ? <Redirect push to="/" /> : ''}

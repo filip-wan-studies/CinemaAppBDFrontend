@@ -5,6 +5,7 @@ import screeningsReducer from './screeningsReducer';
 import reservationReducer from './reservationReducer';
 import popupReducer from './popupReducer';
 import clientReducer from './clientReducer';
+import authReducer from './authReducer';
 
 export default combineReducers({
     films: filmsReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
     screenings: screeningsReducer,
     reservation: reservationReducer,
     popup: popupReducer,
-    client: clientReducer
+    client: clientReducer,
+    auth: authReducer
 });

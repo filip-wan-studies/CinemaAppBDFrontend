@@ -161,8 +161,10 @@ class RegisterForm extends React.Component {
         };
         console.log("You're trying to register", registration);
         await this.props.postClient(registration);
-        if (this.props.response.status === 200) this.props.togglePopup(false);
-        else alert('Podany Email już istnieje');
+        if (this.props.response.status === 200) {
+            this.props.togglePopup(false);
+            this.props.popupToggleRegister(false);
+        } else alert('Podany Email już istnieje');
         event.persist();
     };
 }

@@ -1,6 +1,7 @@
+import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
-import { popupToggleRegister } from '../../../actions';
+import { togglePopup, popupToggleRegister, login } from '../../../actions';
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -76,17 +77,21 @@ class LoginForm extends React.Component {
     };
 
     handleSubmit = async event => {
-        let login = {
-            email: this.state.email,
-            password: this.state.password
+        let credentials = {
+            Email: this.state.email,
+            Secret: this.state.password
         };
-        console.log("You're trying to log in", login);
+        console.log("You're trying to log in", credentials);
+        await this.props.login(credentials);
+
+        if (!_.isEmpty(this.props.auth)) this.props.togglePopup(false);
+        else alert('Niepoprawne dane logowania');
         event.persist();
     };
 }
 
 const mapStateToProps = state => {
-    return { isRegisterToggled: state.popup.isRegisterToggled };
+    return { isRegisterToggled: state.popup.isRegisterToggled, auth: state.auth };
 };
 
-export default connect(mapStateToProps, { popupToggleRegister })(LoginForm);
+export default connect(mapStateToProps, { togglePopup, popupToggleRegister, login })(LoginForm);

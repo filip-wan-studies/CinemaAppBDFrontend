@@ -52,5 +52,6 @@ export const postReservation = reservation => async dispatch => {
 };
 
 export const togglePopup = isToggled => dispatch => {
+    console.log('Action');
     dispatch({ type: 'TOGGLE_POPUP', payload: { isToggled } });
 };

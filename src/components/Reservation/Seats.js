@@ -112,12 +112,6 @@ class Seats extends React.Component {
     };
 
     clickNextButton = e => {
-        console.log(
-            this.state.email,
-            !_.isEmpty(this.props.reservation.seats),
-            this.props.auth.isLoggedIn,
-            this.props.auth.id
-        );
         if (!_.isEmpty(this.props.reservation.seats) && (this.state.email !== '' || this.props.auth.isLoggedIn))
             this.props.auth.isLoggedIn
                 ? this.props.confirmReservationForUser(this.props.auth.id)

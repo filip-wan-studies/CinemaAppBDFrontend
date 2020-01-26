@@ -15,7 +15,7 @@ class Reservation extends React.Component {
         if (_.isEmpty(this.props.screening)) {
             return <LoadingSpinner />;
         } else if (this.props.reservation.isReady) {
-            return <Confirm />;
+            return <Confirm screening={this.props.screening} />;
         } else {
             return (
                 <div>

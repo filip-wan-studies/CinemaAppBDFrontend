@@ -15,6 +15,10 @@ label {
     transform: scale(3) translate(35%, 35%);
 }
 
+.confirm-info {
+    padding: 0 25%;
+}
+
 .seats button {
     font-size: 0.7rem;
     width: 3.5rem;

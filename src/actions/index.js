@@ -50,3 +50,7 @@ export const postReservation = reservation => async dispatch => {
     });
     dispatch({ type: 'POST_RESERVATION', payload: { response } });
 };
+
+export const togglePopup = isToggled => dispatch => {
+    dispatch({ type: 'TOGGLE_POPUP', payload: { isToggled } });
+};

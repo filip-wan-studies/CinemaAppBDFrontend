@@ -50,13 +50,14 @@ class Seats extends React.Component {
 
     renderSeats() {
         let seatsArr = [];
-        this.props.screening.room.seats.forEach(s => {
-            if (seatsArr[s.rowNumber - 1] === undefined) seatsArr[s.rowNumber - 1] = [];
-            seatsArr[s.rowNumber - 1][s.seatNumber - 1] = s;
+        this.props.screening.screenseats.forEach(s => {
+            if (seatsArr[s.seat.rowNumber - 1] === undefined) seatsArr[s.seat.rowNumber - 1] = [];
+            seatsArr[s.seat.rowNumber - 1][s.seat.seatNumber - 1] = s;
         });
 
         return seatsArr.map(row => (
-            <div key={row[0].rowNumber} className="flex-row">
+            <div key={row[0].seat.rowNumber} className="flex-row">
+                {console.log(row[0])}
                 {row.map(s => (
                     <button
                         className={this.seatClass(s)}
@@ -66,7 +67,7 @@ class Seats extends React.Component {
                         id={s.id}
                         key={s.id}
                     >
-                        {s.id}
+                        {s.seat.rowNumber + '-' + s.seat.seatNumber}
                     </button>
                 ))}
             </div>
@@ -86,7 +87,7 @@ class Seats extends React.Component {
     };
 
     clickSeatButton = e => {
-        const seat = this.props.screening.room.seats.find(s => s.id === parseInt(e.target.value));
+        const seat = this.props.screening.screenseats.find(s => s.id === parseInt(e.target.value));
 
         if (!seat || seat.isReserved === true) return;
 

@@ -44,7 +44,7 @@ export const postReservation = reservation => async dispatch => {
     await reservation.seats.forEach(async s => {
         const r = await cinemaBack.post('reservation/', {
             Email: reservation.Email,
-            Ticket: { ScreeningId: reservation.seanceId, SeatId: s.SeatId }
+            Ticket: { ScreeningId: reservation.seanceId, ScreenSeatId: s.SeatId }
         });
         await response.push(r);
     });

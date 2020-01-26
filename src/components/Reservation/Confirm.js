@@ -27,6 +27,7 @@ class Confirm extends React.Component {
     clickSubmitButton = async e => {
         await this.props.postReservation(this.props.reservation);
         this.setState({ redirect: true });
+        this.props.unconfirmReservation();
     };
 
     clickReturnButton = e => {

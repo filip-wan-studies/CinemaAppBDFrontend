@@ -16,5 +16,7 @@ label {
 }
 
 .seats button {
-    width: 2.6rem;
+    font-size: 0.7rem;
+    width: 3.5rem;
+    height: auto;
 }
